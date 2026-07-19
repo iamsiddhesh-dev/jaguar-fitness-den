@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { siteConfig } from '@/content/site-config';
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics';
+import { whatsappHref } from '@/lib/links';
 
 function PhoneIcon() {
   return (
@@ -48,23 +52,21 @@ function DumbbellIcon() {
 
 /** Always-visible mobile conversion bar per docs/02-ux-design.md §4. */
 export function StickyMobileBar() {
-  const whatsappHref = `https://wa.me/${siteConfig.whatsapp.e164.replace('+', '')}?text=${encodeURIComponent(
-    siteConfig.whatsapp.defaultMessage,
-  )}`;
-
   return (
     <div className="bg-charcoal-950 border-ivory-50/10 fixed inset-x-0 bottom-0 z-40 flex border-t md:hidden">
       <a
         href={`tel:${siteConfig.phones.primary.e164}`}
+        onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { phone_number: 'primary' })}
         className="text-ivory-50 hover:text-gold-400 border-ivory-50/10 flex flex-1 flex-col items-center justify-center gap-1 border-r py-2.5 font-sans text-[0.65rem] font-semibold tracking-[0.1em] uppercase transition-colors"
       >
         <PhoneIcon />
         Call
       </a>
       <a
-        href={whatsappHref}
+        href={whatsappHref()}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackEvent(ANALYTICS_EVENTS.WHATSAPP_CLICK, { cta_location: 'sticky_bar' })}
         className="text-ivory-50 hover:text-gold-400 border-ivory-50/10 flex flex-1 flex-col items-center justify-center gap-1 border-r py-2.5 font-sans text-[0.65rem] font-semibold tracking-[0.1em] uppercase transition-colors"
       >
         <WhatsAppIcon />
@@ -72,6 +74,7 @@ export function StickyMobileBar() {
       </a>
       <Link
         href="/contact"
+        onClick={() => trackEvent(ANALYTICS_EVENTS.TRIAL_CTA_CLICK, { cta_location: 'sticky_bar' })}
         className="bg-gold-400 text-charcoal-950 hover:bg-gold-300 flex flex-1 flex-col items-center justify-center gap-1 py-2.5 font-sans text-[0.65rem] font-semibold tracking-[0.1em] uppercase transition-colors"
       >
         <DumbbellIcon />

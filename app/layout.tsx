@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Oswald } from 'next/font/google';
 import './globals.css';
+import { Ga4Script } from '@/components/analytics/ga4-script';
 import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { StickyMobileBar } from '@/components/layout/sticky-mobile-bar';
@@ -43,6 +44,7 @@ export default function RootLayout({
         <div className="flex flex-1 flex-col pt-16 md:pt-20">{children}</div>
         <SiteFooter />
         <StickyMobileBar />
+        <Ga4Script />
       </body>
     </html>
   );

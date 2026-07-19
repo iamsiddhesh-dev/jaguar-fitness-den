@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/cn';
 import { navLinks } from '@/lib/nav';
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics';
 import { Button } from '@/components/ui/button';
 import { Wordmark } from '@/components/ui/wordmark';
 
@@ -85,11 +86,7 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8 md:h-20">
-          <Link
-            href="/"
-            onClick={() => setMenuOpen(false)}
-            aria-label="Jaguar Fitness Den — home"
-          >
+          <Link href="/" onClick={() => setMenuOpen(false)} aria-label="Jaguar Fitness Den — home">
             <Wordmark size="sm" />
           </Link>
 
@@ -106,7 +103,13 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden xl:block">
-            <Button href="/contact" size="sm">
+            <Button
+              href="/contact"
+              size="sm"
+              onClick={() =>
+                trackEvent(ANALYTICS_EVENTS.TRIAL_CTA_CLICK, { cta_location: 'header' })
+              }
+            >
               Book Free Trial
             </Button>
           </div>
@@ -142,7 +145,14 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
-          <Button href="/contact" size="lg" className="mt-8">
+          <Button
+            href="/contact"
+            size="lg"
+            className="mt-8"
+            onClick={() =>
+              trackEvent(ANALYTICS_EVENTS.TRIAL_CTA_CLICK, { cta_location: 'mobile_menu' })
+            }
+          >
             Book Free Trial
           </Button>
         </nav>

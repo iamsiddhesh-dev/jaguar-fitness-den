@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { Eyebrow, Heading } from '@/components/ui/heading';
+import { TrackedButton } from '@/components/ui/tracked-button';
 import { siteConfig } from '@/content/site-config';
+import { ANALYTICS_EVENTS } from '@/lib/analytics';
 import { getMediaSlot } from '@/lib/media';
 import { HeroVideo } from './hero-video';
 
@@ -57,12 +58,23 @@ export function Hero() {
           Panchavati — built for people who take results seriously.
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <Button href="/contact" size="lg">
+          <TrackedButton
+            href="/contact"
+            size="lg"
+            event={ANALYTICS_EVENTS.TRIAL_CTA_CLICK}
+            eventParams={{ cta_location: 'hero' }}
+          >
             Book Free Trial
-          </Button>
-          <Button href={`tel:${siteConfig.phones.primary.e164}`} variant="outline" size="lg">
+          </TrackedButton>
+          <TrackedButton
+            href={`tel:${siteConfig.phones.primary.e164}`}
+            variant="outline"
+            size="lg"
+            event={ANALYTICS_EVENTS.CALL_CLICK}
+            eventParams={{ phone_number: 'primary' }}
+          >
             Call Now
-          </Button>
+          </TrackedButton>
         </div>
       </div>
 

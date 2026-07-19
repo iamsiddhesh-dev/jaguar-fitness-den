@@ -4,7 +4,9 @@ import { Card } from '@/components/ui/card';
 import { CTABand } from '@/components/ui/cta-band';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
+import { TrackedButton } from '@/components/ui/tracked-button';
 import type { MediaSlot, Program } from '@/content/types';
+import { ANALYTICS_EVENTS } from '@/lib/analytics';
 import { CheckIcon } from './icons';
 
 type ProgramDetailProps = {
@@ -31,9 +33,14 @@ export function ProgramDetail({ program, media }: ProgramDetailProps) {
               {program.tagline}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Button href="/contact" size="lg">
+              <TrackedButton
+                href="/contact"
+                size="lg"
+                event={ANALYTICS_EVENTS.TRIAL_CTA_CLICK}
+                eventParams={{ cta_location: `program_detail_${program.slug}` }}
+              >
                 Book Free Trial
-              </Button>
+              </TrackedButton>
               <Button href="/pricing" variant="outline" size="lg">
                 View Pricing
               </Button>
@@ -88,9 +95,14 @@ export function ProgramDetail({ program, media }: ProgramDetailProps) {
         title={`Ready to Start ${program.name}?`}
         subtitle="Book a free trial and train with certified, elite coaches on international-grade equipment."
       >
-        <Button href="/contact" size="lg">
+        <TrackedButton
+          href="/contact"
+          size="lg"
+          event={ANALYTICS_EVENTS.TRIAL_CTA_CLICK}
+          eventParams={{ cta_location: `program_detail_${program.slug}_band` }}
+        >
           Book Free Trial
-        </Button>
+        </TrackedButton>
         <Button href="/programs" variant="outline" size="lg">
           Explore All Programs
         </Button>

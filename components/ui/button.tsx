@@ -28,7 +28,9 @@ type ButtonProps = {
   /** Renders a Next.js link styled as a button. */
   href?: string;
   children: ReactNode;
-} & Omit<ComponentPropsWithoutRef<'button'>, 'children'> &
+  /** Fires on click for both the `<a>` (href set) and `<button>` render paths. */
+  onClick?: () => void;
+} & Omit<ComponentPropsWithoutRef<'button'>, 'children' | 'onClick'> &
   Pick<ComponentPropsWithoutRef<'a'>, 'target' | 'rel'>;
 
 export function Button({
@@ -40,20 +42,21 @@ export function Button({
   target,
   rel,
   type = 'button',
+  onClick,
   ...rest
 }: ButtonProps) {
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if (href) {
     return (
-      <Link href={href} target={target} rel={rel} className={classes}>
+      <Link href={href} target={target} rel={rel} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button type={type} className={classes} {...rest}>
+    <button type={type} className={classes} onClick={onClick} {...rest}>
       {children}
     </button>
   );

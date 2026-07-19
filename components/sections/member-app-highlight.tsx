@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
+import { TrackedButton } from '@/components/ui/tracked-button';
+import { ANALYTICS_EVENTS } from '@/lib/analytics';
 import { getMediaSlot } from '@/lib/media';
 import { CheckIcon } from './icons';
 
@@ -37,9 +38,14 @@ export function MemberAppHighlight() {
             ))}
           </ul>
           <div className="mt-8">
-            <Button href="/contact" variant="outline">
+            <TrackedButton
+              href="/contact"
+              variant="outline"
+              event={ANALYTICS_EVENTS.TRIAL_CTA_CLICK}
+              eventParams={{ cta_location: 'member_app_highlight' }}
+            >
               See It on a Free Trial
-            </Button>
+            </TrackedButton>
           </div>
         </div>
 

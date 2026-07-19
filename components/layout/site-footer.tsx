@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { siteConfig } from '@/content/site-config';
 import { footerQuickLinks } from '@/lib/nav';
+import { ANALYTICS_EVENTS, trackEvent } from '@/lib/analytics';
 import { Wordmark } from '@/components/ui/wordmark';
 import { JaguarDivider } from '@/components/ui/jaguar-divider';
 
@@ -43,10 +46,20 @@ export function SiteFooter() {
           <address className="text-smoke-300 not-italic">
             <p className="font-sans text-sm leading-relaxed">{siteConfig.address.full}</p>
             <p className="mt-4 flex flex-col gap-1 font-sans text-sm">
-              <a href={`tel:${siteConfig.phones.primary.e164}`} className="hover:text-gold-400">
+              <a
+                href={`tel:${siteConfig.phones.primary.e164}`}
+                className="hover:text-gold-400"
+                onClick={() => trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { phone_number: 'primary' })}
+              >
                 {siteConfig.phones.primary.display}
               </a>
-              <a href={`tel:${siteConfig.phones.secondary.e164}`} className="hover:text-gold-400">
+              <a
+                href={`tel:${siteConfig.phones.secondary.e164}`}
+                className="hover:text-gold-400"
+                onClick={() =>
+                  trackEvent(ANALYTICS_EVENTS.CALL_CLICK, { phone_number: 'secondary' })
+                }
+              >
                 {siteConfig.phones.secondary.display}
               </a>
             </p>
