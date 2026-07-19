@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter, Oswald } from 'next/font/google';
 import './globals.css';
+import { SiteHeader } from '@/components/layout/site-header';
+import { SiteFooter } from '@/components/layout/site-footer';
+import { StickyMobileBar } from '@/components/layout/sticky-mobile-bar';
 
 const oswald = Oswald({
   variable: '--font-oswald',
@@ -27,7 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${oswald.variable} ${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col pb-16 md:pb-0">
+        <SiteHeader />
+        <div className="flex flex-1 flex-col pt-16 md:pt-20">{children}</div>
+        <SiteFooter />
+        <StickyMobileBar />
+      </body>
     </html>
   );
 }
