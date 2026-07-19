@@ -67,7 +67,7 @@ export function PromoBanner({ banner = promoBanner }: PromoBannerProps) {
         <p className="font-sans text-xs font-bold tracking-[0.18em] uppercase">{banner.label}</p>
         <p className="font-display mt-1 text-2xl font-semibold uppercase">
           <InrPrice amount={banner.priceInr} />{' '}
-          <span className="text-charcoal-950/60 text-base font-medium line-through">
+          <span className="text-charcoal-950 text-base font-medium line-through">
             <InrPrice amount={banner.originalPriceInr} />
           </span>
         </p>

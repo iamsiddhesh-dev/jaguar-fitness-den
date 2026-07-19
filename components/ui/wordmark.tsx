@@ -31,6 +31,7 @@ export function Wordmark({ size = 'md', tone = 'dark', className }: WordmarkProp
   const rule = tone === 'dark' ? 'bg-gold-400/40' : 'bg-gold-700/40';
   return (
     <span
+      role="img"
       aria-label="Jaguar Fitness Den"
       className={cn('inline-flex flex-col items-center', className)}
     >
@@ -47,12 +48,12 @@ export function Wordmark({ size = 'md', tone = 'dark', className }: WordmarkProp
         <span className={cn('h-px flex-1', rule)} />
         <span
           className={cn(
-            'font-sans font-semibold tracking-[0.42em] uppercase',
+            'font-sans font-semibold tracking-[0.42em] whitespace-nowrap uppercase',
             subSizes[size],
             gold,
           )}
         >
-          Fitness&nbsp;Den
+          Fitness Den
         </span>
         <span className={cn('h-px flex-1', rule)} />
       </span>

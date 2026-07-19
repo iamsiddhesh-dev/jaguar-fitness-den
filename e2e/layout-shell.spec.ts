@@ -51,7 +51,7 @@ test.describe('layout shell — mobile', () => {
     await expect(page).toHaveURL('/faq');
 
     // Global chrome (header + footer) still renders on a route with no page yet (on-brand 404).
-    await expect(page.getByRole('link', { name: 'Jaguar Fitness Den — home' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Jaguar Fitness Den', exact: true })).toBeVisible();
     await expect(page.locator('footer')).toBeVisible();
     await expect(mobileNav).toBeHidden();
   });

@@ -18,7 +18,7 @@ export function LocationStrip() {
       <div className="grid items-center gap-12 md:grid-cols-2">
         <Link
           href="/location"
-          aria-label="Open the location page for directions"
+          aria-label="Open Directions to Jaguar Fitness Den"
           className="rounded-card border-ivory-50/8 group relative block aspect-16/10 overflow-hidden border"
         >
           <Image

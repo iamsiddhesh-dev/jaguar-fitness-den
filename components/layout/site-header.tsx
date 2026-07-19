@@ -86,7 +86,7 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8 md:h-20">
-          <Link href="/" onClick={() => setMenuOpen(false)} aria-label="Jaguar Fitness Den — home">
+          <Link href="/" onClick={() => setMenuOpen(false)}>
             <Wordmark size="sm" />
           </Link>
 
