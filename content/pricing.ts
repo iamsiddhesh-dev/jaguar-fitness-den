@@ -35,8 +35,9 @@ export const promoBanner: PromoBanner = {
   priceInr: 11999,
   originalPriceInr: 18000,
   label: 'Limited-time annual offer',
-  description:
-    'Join now during our promotional drive and lock in the annual membership at ₹11,999.',
+  // No ₹ in this copy: the banner renders prices via InrPrice; a ₹ here
+  // would pull the latin-ext font subsets and regress the home LCP budget.
+  description: 'Join now during our promotional drive and lock in a full year at the promo rate.',
 };
 
 export const addOns: AddOn[] = [

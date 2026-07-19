@@ -5,16 +5,24 @@ import { SiteHeader } from '@/components/layout/site-header';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { StickyMobileBar } from '@/components/layout/sticky-mobile-bar';
 
+// display: 'optional' keeps the hero H1 from re-painting on font swap — the
+// swap repaint was re-candidating LCP at font-arrival time (~4.7s on
+// throttled mobile vs the 2.5s budget). The font is preloaded, so it still
+// renders on any reasonable connection; slow first visits get the
+// size-adjusted Arial Narrow fallback instead of a late swap.
 const oswald = Oswald({
   variable: '--font-oswald',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'optional',
 });
 
+// Not preloaded: Inter styles body copy, not the LCP headline, and its 48KB
+// preload was competing with the hero-critical resources on throttled mobile.
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 });
 
 export const metadata: Metadata = {
