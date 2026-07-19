@@ -6,12 +6,14 @@ import { CTABand } from '@/components/ui/cta-band';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { formatPublishedDate, getReadingTime, sortedPosts } from '@/lib/blog';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/blog',
   title: 'Blog | Jaguar Fitness Den, Panchavati, Nashik',
   description:
-    'Training guides and honest local gym advice from Jaguar Fitness Den — membership value in Panchavati, gym options near Meri & Mhasrul, and beginner strength plans.',
-};
+    'Training guides and local gym advice from Jaguar Fitness Den — membership value in Panchavati, gym options near Meri & Mhasrul, beginner strength plans.',
+});
 
 export default function BlogIndexPage() {
   const posts = sortedPosts();

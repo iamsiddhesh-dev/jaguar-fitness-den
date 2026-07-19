@@ -21,9 +21,9 @@ export const blogPosts: BlogPost[] = [
     tags: ['Panchavati', 'Membership', 'Value'],
     relatedPrograms: ['strength', 'personal-training', 'nutrition-coaching'],
     seo: {
-      title: 'Best Gym in Panchavati — What an Annual Membership Buys | Jaguar Fitness Den',
+      title: 'Best Gym in Panchavati, Nashik — What a Membership Buys',
       description:
-        'What a ₹18,000 annual gym membership in Panchavati, Nashik really includes: 5,500+ sq ft, Jaguar Strength equipment, steam rooms, classes and app-tracked coaching.',
+        'What a ₹18,000 annual gym membership in Panchavati, Nashik really includes: 5,500+ sq ft, Jaguar Strength equipment, steam rooms and coached classes.',
     },
   },
   {
@@ -36,9 +36,9 @@ export const blogPosts: BlogPost[] = [
     tags: ['Meri', 'Mhasrul', 'Comparison'],
     relatedPrograms: ['strength', 'functional', 'zumba'],
     seo: {
-      title: 'Gym Options Near Meri & Mhasrul, Nashik — Compared | Jaguar Fitness Den',
+      title: 'Gym Options Near Meri & Mhasrul, Nashik — Compared',
       description:
-        'Comparing gym options near Meri and Mhasrul, Nashik: budget setups, class studios and full premium facilities — what each costs you in equipment, space and results.',
+        'Comparing gym options near Meri and Mhasrul, Nashik: budget setups, class studios and full premium facilities — what each costs you in equipment and space.',
     },
   },
   {
@@ -51,9 +51,9 @@ export const blogPosts: BlogPost[] = [
     tags: ['Strength', 'Beginners', 'Training'],
     relatedPrograms: ['strength', 'personal-training', 'yoga'],
     seo: {
-      title: 'Beginner Strength Training Plan — First 8 Weeks | Jaguar Fitness Den, Nashik',
+      title: 'Beginner Strength Training Plan — First 8 Weeks, Nashik',
       description:
-        'A beginner strength training plan for your first eight weeks in the gym: session structure, the five core lifts, progression, recovery, and common mistakes to avoid.',
+        'A beginner strength training plan for your first eight weeks in a Nashik gym: session structure, the five core lifts, progression, and mistakes to avoid.',
     },
   },
 ];

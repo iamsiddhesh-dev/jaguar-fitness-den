@@ -7,11 +7,13 @@ import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { meriMhasrulLocality } from '@/content/locality';
 import { siteConfig } from '@/content/site-config';
 import { whatsappHref } from '@/lib/links';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: `/${meriMhasrulLocality.slug}`,
   title: meriMhasrulLocality.seo.title,
   description: meriMhasrulLocality.seo.description,
-};
+});
 
 export default function GymNearMeriMhasrulPage() {
   return (

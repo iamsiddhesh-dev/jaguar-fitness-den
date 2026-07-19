@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation';
 import { ProgramDetail } from '@/components/sections/program-detail';
 import { programs } from '@/content/programs';
 import { getMediaSlot } from '@/lib/media';
+import { buildPageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/schema/json-ld';
+import { buildBreadcrumbListSchema } from '@/components/schema/breadcrumb-list';
 
 type ProgramPageProps = {
   params: Promise<{ slug: string }>;
@@ -16,10 +19,11 @@ export async function generateMetadata({ params }: ProgramPageProps): Promise<Me
   const { slug } = await params;
   const program = programs.find((p) => p.slug === slug);
   if (!program) return {};
-  return {
+  return buildPageMetadata({
+    path: `/programs/${program.slug}`,
     title: program.seo.title,
     description: program.seo.description,
-  };
+  });
 }
 
 export default async function ProgramPage({ params }: ProgramPageProps) {
@@ -29,5 +33,16 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
 
   const media = getMediaSlot(`program-${program.slug}`);
 
-  return <ProgramDetail program={program} media={media} />;
+  return (
+    <>
+      <JsonLd
+        data={buildBreadcrumbListSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Programs', path: '/programs' },
+          { name: program.name, path: `/programs/${program.slug}` },
+        ])}
+      />
+      <ProgramDetail program={program} media={media} />
+    </>
+  );
 }

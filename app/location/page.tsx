@@ -5,12 +5,14 @@ import { CTABand } from '@/components/ui/cta-band';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { siteConfig } from '@/content/site-config';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Location & Directions | Jaguar Fitness Den, Panchavati, Nashik',
+export const metadata: Metadata = buildPageMetadata({
+  path: '/location',
+  title: 'Directions | Jaguar Fitness Den, Panchavati, Nashik',
   description:
     'Find Jaguar Fitness Den on Floor No. 5, Laxmi Sky Park, Dindori Road, Panchavati, Nashik — directions, parking, and opening hours incl. Sunday.',
-};
+});
 
 const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
   siteConfig.address.full,

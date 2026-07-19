@@ -8,12 +8,14 @@ import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { facilities } from '@/content/facilities';
 import { cn } from '@/lib/cn';
 import { getMediaSlot } from '@/lib/media';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/facilities',
   title: 'Facilities | Jaguar Fitness Den, Panchavati, Nashik',
   description:
-    'Steam rooms, a members’ lounge, dedicated class studios, and international-grade Jaguar Strength equipment — explore every facility at Jaguar Fitness Den, Panchavati.',
-};
+    'Steam rooms, a members’ lounge, class studios and international-grade Jaguar Strength equipment — every facility at our Panchavati, Nashik gym.',
+});
 
 const featured = [
   {

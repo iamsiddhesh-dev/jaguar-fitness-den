@@ -11,6 +11,9 @@ import { blogPosts } from '@/content/blog';
 import { programs } from '@/content/programs';
 import { formatPublishedDate, getPostBySlug, getReadingTime } from '@/lib/blog';
 import { whatsappHref } from '@/lib/links';
+import { buildPageMetadata } from '@/lib/seo';
+import { JsonLd } from '@/components/schema/json-ld';
+import { buildBreadcrumbListSchema } from '@/components/schema/breadcrumb-list';
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
@@ -29,10 +32,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) return {};
 
-  return {
+  return buildPageMetadata({
+    path: `/blog/${post.slug}`,
     title: post.seo.title,
     description: post.seo.description,
-  };
+    type: 'article',
+    publishedTime: post.publishedAt,
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -48,6 +54,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main className="flex-1">
+      <JsonLd
+        data={buildBreadcrumbListSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Blog', path: '/blog' },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
+      />
       <SectionWrapper variant="darker">
         <article className="mx-auto max-w-3xl">
           <header>

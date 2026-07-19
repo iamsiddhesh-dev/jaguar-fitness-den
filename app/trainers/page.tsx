@@ -8,12 +8,14 @@ import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { trainers } from '@/content/trainers';
 import { getMediaSlot } from '@/lib/media';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/trainers',
   title: 'Trainers | Jaguar Fitness Den, Panchavati, Nashik',
   description:
-    'Meet the certified, elite coaching team at Jaguar Fitness Den — strength, group fitness, personal training, and nutrition coaching in Panchavati, Nashik.',
-};
+    'Meet the certified coaching team at Jaguar Fitness Den — strength, group fitness, personal training and nutrition coaching in Panchavati, Nashik.',
+});
 
 const trainerImageSlots = ['trainer-1', 'trainer-2', 'trainer-3'];
 

@@ -6,12 +6,16 @@ import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { faqs } from '@/content/faq';
 import type { FaqItem } from '@/content/types';
 import { FaqAccordion } from '@/components/sections/faq-accordion';
+import { JsonLd } from '@/components/schema/json-ld';
+import { buildFaqPageSchema } from '@/components/schema/faq-page';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/faq',
   title: 'FAQ | Jaguar Fitness Den, Panchavati, Nashik',
   description:
     'Answers about hours, parking, steam rooms, membership cost, and directions from Meri & Mhasrul to Jaguar Fitness Den, Panchavati, Nashik.',
-};
+});
 
 const categoryLabels: Record<FaqItem['category'], string> = {
   location: 'Location & Directions',
@@ -25,6 +29,7 @@ const categoryOrder: FaqItem['category'][] = ['general', 'location', 'facilities
 export default function FaqPage() {
   return (
     <main className="flex-1">
+      <JsonLd data={buildFaqPageSchema(faqs)} />
       <SectionWrapper variant="darker">
         <div className="max-w-2xl">
           <Eyebrow>FAQ</Eyebrow>

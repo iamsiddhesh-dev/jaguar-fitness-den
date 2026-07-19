@@ -10,12 +10,14 @@ import { addOns, pricingPlans } from '@/content/pricing';
 import { CheckIcon } from '@/components/sections/icons';
 import { InrPrice } from '@/components/sections/inr-price';
 import { PromoBanner } from '@/components/sections/promo-banner';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Membership Pricing | Jaguar Fitness Den, Panchavati, Nashik',
+export const metadata: Metadata = buildPageMetadata({
+  path: '/pricing',
+  title: 'Membership Pricing | Jaguar Fitness Den, Panchavati',
   description:
     'Jaguar Fitness Den annual membership: ₹18,000 with steam rooms, AC, group studios, and a members app all included. Panchavati, Nashik.',
-};
+});
 
 export default function PricingPage() {
   const annual = pricingPlans.find((plan) => plan.id === 'annual-standard');

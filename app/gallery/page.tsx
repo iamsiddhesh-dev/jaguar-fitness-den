@@ -7,12 +7,14 @@ import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { galleryItems } from '@/content/gallery';
 import { getMediaSlot } from '@/lib/media';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/gallery',
   title: 'Gallery | Jaguar Fitness Den, Panchavati, Nashik',
   description:
     'See the training floor, studios, and member transformations at Jaguar Fitness Den, Panchavati, Nashik.',
-};
+});
 
 export default function GalleryPage() {
   const facilityShots = galleryItems.filter((item) => item.category === 'facility');

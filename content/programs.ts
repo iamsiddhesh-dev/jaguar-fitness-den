@@ -37,7 +37,7 @@ export const programs: Program[] = [
       'Stretch and recovery',
     ],
     seo: {
-      title: 'Functional Training Studio in Panchavati, Nashik | Jaguar Fitness Den',
+      title: 'Functional Training in Panchavati, Nashik | Jaguar Fitness Den',
       description:
         'Dedicated functional training studio at Jaguar Fitness Den, Panchavati, Nashik. Full-body circuits for strength, mobility, and everyday performance.',
     },

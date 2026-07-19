@@ -8,12 +8,14 @@ import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { programs } from '@/content/programs';
 import { getMediaSlot } from '@/lib/media';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/programs',
   title: 'Programs | Jaguar Fitness Den, Panchavati, Nashik',
   description:
-    'Strength, Functional Training, Zumba, Yoga, Personal Training, and Nutrition Coaching — explore every program at Jaguar Fitness Den, Panchavati, Nashik.',
-};
+    'Strength, Functional Training, Zumba, Yoga, Personal Training and Nutrition Coaching — every program at Jaguar Fitness Den, Panchavati, Nashik.',
+});
 
 export default function ProgramsIndexPage() {
   return (

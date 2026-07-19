@@ -9,12 +9,14 @@ import { facilities } from '@/content/facilities';
 import { programs } from '@/content/programs';
 import { getMediaSlot } from '@/lib/media';
 import { whatsappHref } from '@/lib/links';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'About Jaguar Fitness Den | Premium Gym in Panchavati, Nashik',
+export const metadata: Metadata = buildPageMetadata({
+  path: '/about',
+  title: 'About Jaguar Fitness Den | Premium Gym in Panchavati',
   description:
-    'Jaguar Fitness Den is a 5,500+ sq ft premium gym in Panchavati, Nashik — international-grade Jaguar Strength equipment, dedicated studios, and elite coaching.',
-};
+    'Jaguar Fitness Den is a 5,500+ sq ft premium gym in Panchavati, Nashik — international-grade Jaguar Strength equipment, studios, and elite coaching.',
+});
 
 export default function AboutPage() {
   const equipmentImage = getMediaSlot('facilities-strip-equipment');

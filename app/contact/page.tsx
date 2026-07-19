@@ -7,12 +7,14 @@ import { ContactForm } from '@/components/sections/contact-form';
 import { siteConfig } from '@/content/site-config';
 import { ANALYTICS_EVENTS } from '@/lib/analytics';
 import { whatsappHref } from '@/lib/links';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: '/contact',
   title: 'Contact Us | Jaguar Fitness Den, Panchavati, Nashik',
   description:
     'Book a free trial at Jaguar Fitness Den, Panchavati, Nashik — call, WhatsApp, or send an enquiry. Floor No. 5, Laxmi Sky Park, Dindori Road.',
-};
+});
 
 export default function ContactPage() {
   return (
