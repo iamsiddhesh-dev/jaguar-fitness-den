@@ -88,3 +88,28 @@ export interface MediaSlot {
   placeholderPath: string;
   alt: string;
 }
+
+export interface GalleryItem {
+  id: string;
+  /** Media slot id, looked up via getMediaSlot(). */
+  mediaId: string;
+  caption: string;
+  category: 'facility' | 'transformation';
+}
+
+export interface TravelRoute {
+  /** Starting landmark/locality, e.g. "Meri" or "Mhasrul". */
+  from: string;
+  approxDistanceKm: string;
+  approxTravelTime: string;
+  directions: string;
+}
+
+export interface LocalityContent {
+  slug: string;
+  areaName: string;
+  intro: string;
+  routes: TravelRoute[];
+  whyWorthIt: { title: string; description: string }[];
+  seo: Seo;
+}

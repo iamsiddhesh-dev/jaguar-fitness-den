@@ -25,4 +25,10 @@ export const footerQuickLinks: NavLink[] = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Gym Near Meri & Mhasrul', href: '/gym-near-meri-mhasrul' },
+];
+
+/** Routes that exist but live outside the primary nav (e.g. SEO landing pages). */
+export const additionalRoutes: NavLink[] = [
+  { label: 'Gym Near Meri & Mhasrul', href: '/gym-near-meri-mhasrul' },
 ];
