@@ -7,8 +7,9 @@ import { describe, expect, it } from 'vitest';
  * Business Profile (Panchavati / Laxmi Sky Park). The Meri/Mhasrul locality
  * is targeted through page copy (e.g. FAQ answers) referencing the area by
  * name, but the specific conflicting landmark address — "Reliance Petrol
- * Pump" — must never appear anywhere under content/ or app/, since that
- * would read as a second, contradictory business address.
+ * Pump" — must never appear anywhere under content/ or app/ (including blog
+ * article bodies), since that would read as a second, contradictory business
+ * address.
  */
 function collectSourceFiles(dir: string): string[] {
   const entries = readdirSync(dir, { withFileTypes: true });
@@ -18,7 +19,7 @@ function collectSourceFiles(dir: string): string[] {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       files.push(...collectSourceFiles(fullPath));
-    } else if (/\.tsx?$/.test(entry.name)) {
+    } else if (/\.(tsx?|mdx)$/.test(entry.name)) {
       files.push(fullPath);
     }
   }

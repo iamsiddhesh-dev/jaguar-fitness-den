@@ -97,6 +97,21 @@ export interface GalleryItem {
   category: 'facility' | 'transformation';
 }
 
+export interface BlogPost {
+  /** Matches the filename of the article body: content/blog/<slug>.mdx */
+  slug: string;
+  title: string;
+  /** One-line summary shown on the blog index card. */
+  excerpt: string;
+  /** ISO date, "YYYY-MM-DD". */
+  publishedAt: string;
+  author: string;
+  tags: string[];
+  /** Program slugs the article links to — surfaced as "Related programs". */
+  relatedPrograms: string[];
+  seo: Seo;
+}
+
 export interface TravelRoute {
   /** Starting landmark/locality, e.g. "Meri" or "Mhasrul". */
   from: string;

@@ -2,9 +2,7 @@ import { test, expect } from '@playwright/test';
 import { additionalRoutes, navLinks } from '../lib/nav';
 import { programs } from '../content/programs';
 
-const allRoutes = [...navLinks, ...additionalRoutes].filter(
-  (link) => link.href !== '/blog', // blog is Phase 6 — not built yet
-);
+const allRoutes = [...navLinks, ...additionalRoutes];
 
 test.describe('inner pages — every route renders', () => {
   for (const route of allRoutes) {
