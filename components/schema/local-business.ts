@@ -19,9 +19,9 @@ const GEO_PLACEHOLDER = '[PLACEHOLDER]';
 
 /** True once real coordinates have been pulled from the Maps listing. */
 export function hasResolvedGeo(): boolean {
-  return (
-    siteConfig.geo.latitude !== GEO_PLACEHOLDER && siteConfig.geo.longitude !== GEO_PLACEHOLDER
-  );
+  const latitude: string = siteConfig.geo.latitude;
+  const longitude: string = siteConfig.geo.longitude;
+  return latitude !== GEO_PLACEHOLDER && longitude !== GEO_PLACEHOLDER;
 }
 
 export function buildLocalBusinessSchema(): Record<string, unknown> {

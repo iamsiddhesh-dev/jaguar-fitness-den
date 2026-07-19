@@ -27,10 +27,10 @@ export const siteConfig = {
     full: 'Floor No. 5, Laxmi Sky Park (Croma Building), Dindori Road, Near Jio Petrol Pump, Panchavati, Sneha Nagar, Nashik, Maharashtra 422004',
   },
 
-  /** [PLACEHOLDER until pulled from the Google Maps listing] */
+  /** Decoded from the Google Maps Plus Code "2RM3+W7 Nashik, Maharashtra". */
   geo: {
-    latitude: '[PLACEHOLDER]',
-    longitude: '[PLACEHOLDER]',
+    latitude: '20.034813',
+    longitude: '73.803187',
   },
 
   phones: {

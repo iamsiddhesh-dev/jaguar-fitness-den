@@ -49,8 +49,12 @@ describe('siteConfig', () => {
     expect(siteConfig.social.instagram).toMatch(/^https:\/\/www\.instagram\.com\//);
   });
 
-  it('flags geo-coordinates as placeholders pending the Maps listing', () => {
-    expect(siteConfig.geo.latitude).toBe('[PLACEHOLDER]');
-    expect(siteConfig.geo.longitude).toBe('[PLACEHOLDER]');
+  it('has real geo-coordinates within Nashik, Maharashtra', () => {
+    const latitude = Number(siteConfig.geo.latitude);
+    const longitude = Number(siteConfig.geo.longitude);
+    expect(latitude).toBeGreaterThan(19.9);
+    expect(latitude).toBeLessThan(20.1);
+    expect(longitude).toBeGreaterThan(73.7);
+    expect(longitude).toBeLessThan(73.9);
   });
 });
