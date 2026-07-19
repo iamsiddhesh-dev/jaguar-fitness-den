@@ -1,0 +1,163 @@
+import type { MediaSlot } from './types';
+
+/**
+ * Central map of every image/video slot in the site to its placeholder asset.
+ * Every entry here MUST also be logged in MEDIA-TODO.md at the repo root.
+ * Swapping in real Instagram-sourced media later is a one-file change here.
+ */
+export const media: MediaSlot[] = [
+  {
+    id: 'home-hero-video',
+    type: 'video',
+    usage: 'Home hero background loop',
+    placeholderPath: '/images/placeholder/home-hero-loop.mp4',
+    alt: 'Members training at Jaguar Fitness Den',
+  },
+  {
+    id: 'home-hero-poster',
+    type: 'image',
+    usage: 'Home hero mobile poster (video fallback)',
+    placeholderPath: '/images/placeholder/home-hero-poster.jpg',
+    alt: 'Jaguar Fitness Den gym floor',
+  },
+  {
+    id: 'facilities-strip-equipment',
+    type: 'image',
+    usage: 'Home facilities strip — equipment photo',
+    placeholderPath: '/images/placeholder/facilities-equipment.jpg',
+    alt: 'Jaguar Strength commercial equipment',
+  },
+  {
+    id: 'facilities-strip-steam-room',
+    type: 'image',
+    usage: 'Home facilities strip — steam room photo',
+    placeholderPath: '/images/placeholder/facilities-steam-room.jpg',
+    alt: 'Steam room at Jaguar Fitness Den',
+  },
+  {
+    id: 'facilities-strip-lounge',
+    type: 'image',
+    usage: "Home facilities strip — members' lounge photo",
+    placeholderPath: '/images/placeholder/facilities-lounge.jpg',
+    alt: "Members' lounge at Jaguar Fitness Den",
+  },
+  {
+    id: 'program-strength',
+    type: 'image',
+    usage: 'Programs preview / detail — Strength Training',
+    placeholderPath: '/images/placeholder/program-strength.jpg',
+    alt: 'Member performing a strength training exercise',
+  },
+  {
+    id: 'program-functional',
+    type: 'image',
+    usage: 'Programs preview / detail — Functional Training',
+    placeholderPath: '/images/placeholder/program-functional.jpg',
+    alt: 'Functional training circuit in progress',
+  },
+  {
+    id: 'program-zumba',
+    type: 'image',
+    usage: 'Programs preview / detail — Zumba',
+    placeholderPath: '/images/placeholder/program-zumba.jpg',
+    alt: 'Zumba class in the group studio',
+  },
+  {
+    id: 'program-yoga',
+    type: 'image',
+    usage: 'Programs preview / detail — Yoga',
+    placeholderPath: '/images/placeholder/program-yoga.jpg',
+    alt: 'Yoga session in the group studio',
+  },
+  {
+    id: 'program-personal-training',
+    type: 'image',
+    usage: 'Programs preview / detail — Personal Training',
+    placeholderPath: '/images/placeholder/program-personal-training.jpg',
+    alt: 'Trainer coaching a member one-on-one',
+  },
+  {
+    id: 'program-nutrition-coaching',
+    type: 'image',
+    usage: 'Programs preview / detail — Nutrition Coaching',
+    placeholderPath: '/images/placeholder/program-nutrition-coaching.jpg',
+    alt: 'Nutrition coaching consultation',
+  },
+  {
+    id: 'member-app-screenshot',
+    type: 'image',
+    usage: 'Home member-app highlight block',
+    placeholderPath: '/images/placeholder/member-app-screenshot.jpg',
+    alt: 'Jaguar Fitness Den members app screenshot',
+  },
+  {
+    id: 'transformation-1',
+    type: 'image',
+    usage: 'Home transformations teaser — slide 1',
+    placeholderPath: '/images/placeholder/transformation-1.jpg',
+    alt: 'Member transformation before and after',
+  },
+  {
+    id: 'transformation-2',
+    type: 'image',
+    usage: 'Home transformations teaser — slide 2',
+    placeholderPath: '/images/placeholder/transformation-2.jpg',
+    alt: 'Member transformation before and after',
+  },
+  {
+    id: 'transformation-3',
+    type: 'image',
+    usage: 'Home transformations teaser — slide 3',
+    placeholderPath: '/images/placeholder/transformation-3.jpg',
+    alt: 'Member transformation before and after',
+  },
+  {
+    id: 'location-strip',
+    type: 'image',
+    usage: 'Home location strip photo',
+    placeholderPath: '/images/placeholder/location-strip.jpg',
+    alt: 'Laxmi Sky Park building exterior, Panchavati',
+  },
+  {
+    id: 'trainer-1',
+    type: 'image',
+    usage: 'Trainers page — placeholder headshot 1',
+    placeholderPath: '/images/placeholder/trainer-1.jpg',
+    alt: 'Placeholder trainer headshot',
+  },
+  {
+    id: 'trainer-2',
+    type: 'image',
+    usage: 'Trainers page — placeholder headshot 2',
+    placeholderPath: '/images/placeholder/trainer-2.jpg',
+    alt: 'Placeholder trainer headshot',
+  },
+  {
+    id: 'trainer-3',
+    type: 'image',
+    usage: 'Trainers page — placeholder headshot 3',
+    placeholderPath: '/images/placeholder/trainer-3.jpg',
+    alt: 'Placeholder trainer headshot',
+  },
+  {
+    id: 'gallery-1',
+    type: 'image',
+    usage: 'Gallery page — slot 1',
+    placeholderPath: '/images/placeholder/gallery-1.jpg',
+    alt: 'Jaguar Fitness Den gallery photo',
+  },
+  {
+    id: 'gallery-2',
+    type: 'image',
+    usage: 'Gallery page — slot 2',
+    placeholderPath: '/images/placeholder/gallery-2.jpg',
+    alt: 'Jaguar Fitness Den gallery photo',
+  },
+  {
+    id: 'gallery-3',
+    type: 'image',
+    usage: 'Gallery page — slot 3',
+    placeholderPath: '/images/placeholder/gallery-3.jpg',
+    alt: 'Jaguar Fitness Den gallery photo',
+  },
+];
