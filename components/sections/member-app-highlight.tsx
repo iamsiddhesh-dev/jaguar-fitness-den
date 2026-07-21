@@ -1,11 +1,16 @@
-import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { TrackedButton } from '@/components/ui/tracked-button';
 import { ANALYTICS_EVENTS } from '@/lib/analytics';
 import { getMediaSlot } from '@/lib/media';
 import { CheckIcon } from './icons';
+import { MemberAppCarousel } from './member-app-carousel';
+
+const screenshots = [
+  { slotId: 'member-app-home', label: 'Track Your Goals' },
+  { slotId: 'member-app-workout-tracker', label: 'Workout Tracker' },
+  { slotId: 'member-app-water-intake', label: 'Log Your Water Intake' },
+] as const;
 
 const appFeatures = [
   'Every workout logged, set by set',
@@ -15,7 +20,10 @@ const appFeatures = [
 
 /** Members-app differentiator block — no other gym in the area offers this. */
 export function MemberAppHighlight() {
-  const screenshot = getMediaSlot('member-app-screenshot');
+  const slides = screenshots.map(({ slotId, label }) => {
+    const slot = getMediaSlot(slotId);
+    return { src: slot.placeholderPath, alt: slot.alt, label };
+  });
 
   return (
     <SectionWrapper variant="dark">
@@ -49,17 +57,16 @@ export function MemberAppHighlight() {
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <div className="border-ivory-50/10 bg-charcoal-800 relative w-full max-w-[260px] rounded-[2rem] border p-3 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.8)]">
-            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">Members Exclusive</Badge>
+        <div className="flex flex-col items-center">
+          <div className="from-gold-300 via-gold-400 to-gold-500 mb-4 inline-flex items-center gap-2 rounded-full bg-linear-to-r px-4 py-1.5 shadow-[0_6px_20px_-6px_rgb(212_160_23/0.6)]">
+            <span className="text-charcoal-950 font-sans text-xs font-bold tracking-[0.12em] whitespace-nowrap uppercase">
+              Members Exclusive
+            </span>
+          </div>
+
+          <div className="border-ivory-50/10 bg-charcoal-800 w-full max-w-[260px] rounded-[2rem] border p-3 shadow-[0_24px_60px_-24px_rgb(0_0_0/0.8)]">
             <div className="relative aspect-1/2 overflow-hidden rounded-[1.4rem]">
-              <Image
-                src={screenshot.placeholderPath}
-                alt={screenshot.alt}
-                fill
-                sizes="260px"
-                className="object-cover"
-              />
+              <MemberAppCarousel slides={slides} />
             </div>
           </div>
         </div>

@@ -1,18 +1,15 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { siteConfig } from '@/content/site-config';
-import { getMediaSlot } from '@/lib/media';
+import { googleMapsEmbedSrc } from '@/lib/links';
 
 /**
  * Location strip. NAP rule: only the official Google-listing address is
  * published — Meri/Mhasrul appear as locality copy, never as an address.
  */
 export function LocationStrip() {
-  const mapImage = getMediaSlot('location-strip');
-
   return (
     <SectionWrapper variant="darker">
       <div className="grid items-center gap-12 md:grid-cols-2">
@@ -21,12 +18,23 @@ export function LocationStrip() {
           aria-label="Open Directions to Jaguar Fitness Den"
           className="rounded-card border-ivory-50/8 group relative block aspect-16/10 overflow-hidden border"
         >
-          <Image
-            src={mapImage.placeholderPath}
-            alt={mapImage.alt}
-            fill
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          {/*
+            A live embed, not a photo: this is a teaser for the real map on
+            /location, so pointer events are disabled on the iframe itself —
+            the whole card is a single link, not an interactive mini-map.
+          */}
+          <iframe
+            title="Jaguar Fitness Den location map"
+            src={googleMapsEmbedSrc()}
+            loading="lazy"
+            tabIndex={-1}
+            aria-hidden="true"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="pointer-events-none absolute inset-0 h-full w-full grayscale transition-[filter] duration-500 group-hover:grayscale-0"
+          />
+          <div
+            aria-hidden="true"
+            className="from-charcoal-950/70 absolute inset-0 bg-linear-to-t via-transparent to-transparent"
           />
           <span className="text-charcoal-950 bg-gold-400 absolute bottom-4 left-4 rounded-full px-4 py-1.5 font-sans text-xs font-semibold tracking-[0.12em] uppercase">
             Open Directions

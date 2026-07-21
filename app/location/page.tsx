@@ -5,6 +5,7 @@ import { CTABand } from '@/components/ui/cta-band';
 import { Eyebrow, Heading } from '@/components/ui/heading';
 import { SectionWrapper } from '@/components/ui/section-wrapper';
 import { siteConfig } from '@/content/site-config';
+import { googleMapsDirectionsHref, googleMapsEmbedSrc } from '@/lib/links';
 import { buildPageMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildPageMetadata({
@@ -13,10 +14,6 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     'Find Jaguar Fitness Den on Floor No. 5, Laxmi Sky Park, Dindori Road, Panchavati, Nashik — directions, parking, and opening hours incl. Sunday.',
 });
-
-const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
-  siteConfig.address.full,
-)}&output=embed`;
 
 export default function LocationPage() {
   return (
@@ -35,7 +32,7 @@ export default function LocationPage() {
         <div className="rounded-card border-ivory-50/8 mt-10 overflow-hidden border">
           <iframe
             title="Jaguar Fitness Den location map"
-            src={mapEmbedSrc}
+            src={googleMapsEmbedSrc()}
             className="h-80 w-full md:h-[420px]"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -44,7 +41,7 @@ export default function LocationPage() {
 
         <div className="mt-8 flex flex-wrap gap-4">
           <Button
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.full)}`}
+            href={googleMapsDirectionsHref()}
             target="_blank"
             rel="noopener noreferrer"
             size="lg"

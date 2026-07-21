@@ -7,7 +7,7 @@ import { getMediaSlot } from '@/lib/media';
 
 const transformationSlots = ['transformation-1', 'transformation-2', 'transformation-3'];
 
-/** Before/after teaser strip — dummy media until real member results arrive. */
+/** Before/after teaser strip — slides 1-2 are real member results; slide 3 is still a placeholder. */
 export function TransformationsTeaser() {
   return (
     <SectionWrapper variant="darker">
@@ -18,7 +18,7 @@ export function TransformationsTeaser() {
             Transformations Happen Here
           </Heading>
         </div>
-        <Badge variant="outline">Sample media — real member results coming soon</Badge>
+        <Badge variant="outline">Real member transformations — more added soon</Badge>
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -27,7 +27,7 @@ export function TransformationsTeaser() {
           return (
             <div
               key={slotId}
-              className="rounded-card border-ivory-50/8 relative aspect-3/4 overflow-hidden border"
+              className="rounded-card border-gold-400/30 relative aspect-3/4 overflow-hidden border shadow-[0_20px_50px_-20px_rgb(217_164_65/0.35)]"
             >
               <Image
                 src={slot.placeholderPath}

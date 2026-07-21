@@ -23,13 +23,13 @@ export const galleryItems: GalleryItem[] = [
   {
     id: 'gallery-transformation-1',
     mediaId: 'transformation-1',
-    caption: 'Member transformation, 12-week program',
+    caption: 'Member transformation',
     category: 'transformation',
   },
   {
     id: 'gallery-transformation-2',
     mediaId: 'transformation-2',
-    caption: 'Member transformation, strength focus',
+    caption: 'Member transformation',
     category: 'transformation',
   },
   {

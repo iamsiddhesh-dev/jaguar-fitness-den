@@ -67,8 +67,19 @@ export function PromoBanner({ banner = promoBanner }: PromoBannerProps) {
         <p className="font-sans text-xs font-bold tracking-[0.18em] uppercase">{banner.label}</p>
         <p className="font-display mt-1 text-2xl font-semibold uppercase">
           <InrPrice amount={banner.priceInr} />{' '}
-          <span className="text-charcoal-950 text-base font-medium line-through">
+          <span className="text-charcoal-950 relative inline-block text-base font-medium">
             <InrPrice amount={banner.originalPriceInr} />
+            {/*
+              A native `line-through` here would draw a separate strike segment per
+              inline run — the ₹ glyph renders in Arial (see InrPrice) while the
+              digits use the display font, and their differing font metrics put
+              each segment's line at a different height, breaking continuity.
+              An absolute overlay spans both runs as one line instead.
+            */}
+            <span
+              aria-hidden="true"
+              className="bg-charcoal-950 absolute inset-x-0 top-1/2 h-px -translate-y-1/2"
+            />
           </span>
         </p>
         <p className="mt-1 font-sans text-sm">{banner.description}</p>

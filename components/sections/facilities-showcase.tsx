@@ -8,8 +8,8 @@ import { getMediaSlot } from '@/lib/media';
 
 const showcaseImages = [
   { slotId: 'facilities-strip-equipment', caption: 'Jaguar Strength Equipment' },
-  { slotId: 'facilities-strip-steam-room', caption: 'Steam Rooms' },
-  { slotId: 'facilities-strip-lounge', caption: "Members' Lounge" },
+  { slotId: 'facilities-strip-group-studio', caption: 'Dedicated Group-Class Studios' },
+  { slotId: 'facilities-strip-lockers', caption: 'Locker Facilities' },
 ];
 
 /** The premium differentiators as a visual strip — links to /facilities. */
@@ -33,14 +33,14 @@ export function FacilitiesShowcase() {
           return (
             <figure
               key={slotId}
-              className="rounded-card border-ivory-50/8 relative aspect-4/3 overflow-hidden border"
+              className="rounded-card border-gold-400/20 group relative aspect-4/3 overflow-hidden border shadow-[0_20px_50px_-24px_rgb(217_164_65/0.3)]"
             >
               <Image
                 src={slot.placeholderPath}
                 alt={slot.alt}
                 fill
                 sizes="(min-width: 640px) 33vw, 100vw"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div
                 aria-hidden="true"
@@ -54,10 +54,13 @@ export function FacilitiesShowcase() {
         })}
       </div>
 
-      <ul className="mt-8 flex flex-wrap gap-2">
+      <ul className="mt-8 flex flex-wrap gap-2.5">
         {facilities.map((facility) => (
           <li key={facility.id}>
-            <Badge variant="neutral">{facility.name}</Badge>
+            <Badge variant="neutral" className="hover:bg-ivory-50/15 gap-2 py-1.5 transition-colors">
+              <span aria-hidden="true" className="bg-smoke-300 h-1 w-1 shrink-0 rounded-full" />
+              {facility.name}
+            </Badge>
           </li>
         ))}
       </ul>

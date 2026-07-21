@@ -14,9 +14,18 @@ export function StatsBar() {
         <StatBlock value={facilities.length} label="Premium amenities" />
         <StatBlock value={17} suffix="+" label="Hours open, Mon–Sat" />
       </div>
-      <p className="text-smoke-500 mt-10 text-center font-sans text-xs tracking-[0.18em] uppercase">
-        {siteConfig.hours.label}
-      </p>
+      <div className="text-smoke-500 mt-10 flex flex-col items-center gap-1 text-center font-sans text-xs tracking-[0.18em] uppercase sm:flex-row sm:justify-center sm:gap-2">
+        {siteConfig.hours.spec.map((entry, i) => (
+          <span key={entry.label} className="flex items-center gap-2">
+            {i > 0 && (
+              <span aria-hidden="true" className="hidden sm:inline">
+                ·
+              </span>
+            )}
+            {entry.label}
+          </span>
+        ))}
+      </div>
     </SectionWrapper>
   );
 }

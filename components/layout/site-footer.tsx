@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/content/site-config';
 import { footerQuickLinks } from '@/lib/nav';
@@ -24,6 +25,13 @@ export function SiteFooter() {
     <footer className="bg-charcoal-950 border-ivory-50/10 border-t">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-4">
         <div className="flex flex-col items-start gap-4">
+          <Image
+            src="/images/logo/jaguar-badge.jpg"
+            alt="Jaguar Fitness Den crest"
+            width={56}
+            height={56}
+            className="rounded-full"
+          />
           <Wordmark size="sm" />
           <p className="text-smoke-400 max-w-xs font-sans text-sm leading-relaxed">
             {siteConfig.tagline}.

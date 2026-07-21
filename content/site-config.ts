@@ -33,15 +33,19 @@ export const siteConfig = {
     longitude: '73.803187',
   },
 
+  /**
+   * primary = the Nashik-location number (this site is Nashik-specific);
+   * secondary = the overall Jaguar Fitness Den chain number.
+   */
   phones: {
-    primary: { e164: '+918983410511', display: '+91 89834 10511' } satisfies Phone,
-    secondary: { e164: '+919158689789', display: '+91 91586 89789' } satisfies Phone,
+    primary: { e164: '+919158689789', display: '+91 91586 89789' } satisfies Phone,
+    secondary: { e164: '+918983410511', display: '+91 89834 10511' } satisfies Phone,
   },
 
-  /** WhatsApp deep links use the primary phone number. */
+  /** WhatsApp deep links use the primary (Nashik) phone number. */
   whatsapp: {
-    e164: '+918983410511',
-    display: '+91 89834 10511',
+    e164: '+919158689789',
+    display: '+91 91586 89789',
     defaultMessage: "Hi Jaguar Fitness Den, I'd like to know more about membership.",
   },
 

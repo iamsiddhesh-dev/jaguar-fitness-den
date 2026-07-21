@@ -4,7 +4,7 @@ import { getMediaSlot } from './media';
 describe('getMediaSlot', () => {
   it('returns the slot for a known id', () => {
     const slot = getMediaSlot('home-hero-poster');
-    expect(slot.placeholderPath).toBe('/images/placeholder/home-hero-poster.jpg');
+    expect(slot.placeholderPath).toBe('/images/hero/home-hero-poster.jpg');
     expect(slot.alt).not.toBe('');
   });
 

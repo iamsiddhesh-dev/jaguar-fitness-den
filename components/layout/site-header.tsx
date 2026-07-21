@@ -85,12 +85,12 @@ export function SiteHeader() {
             : 'border-b border-transparent bg-transparent',
         )}
       >
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8 md:h-20">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-5 sm:px-8 md:h-20">
           <Link href="/" onClick={() => setMenuOpen(false)}>
             <Wordmark size="sm" />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-4 xl:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
