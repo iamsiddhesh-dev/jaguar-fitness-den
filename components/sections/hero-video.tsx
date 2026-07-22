@@ -26,12 +26,18 @@ type HeroVideoProps = {
  * (and would abort a native autoplay attempt), leaving the video parked at
  * t=0 behind the poster.
  *
- * If `play()` is still refused (Data Saver, battery saver, or a low media
- * engagement score will all do it), we retry on the first user gesture
- * rather than giving up — until then the poster stays visible, so the worst
- * case degrades to the static-image hero. Still never the LCP element: this
- * mounts post-hydration via effect, so the poster `<Image>` in hero.tsx is
- * what paints first (docs/05-TRD.md LCP budget).
+ * iOS Safari needs a second path on top of that: it can stall a video at
+ * `readyState 0` indefinitely — never firing `canplay` at all — until a user
+ * gesture happens, regardless of `preload`, muted, or playsInline. So the
+ * gesture listeners below are always attached up front, not just wired in
+ * after a `play()` rejection like a desktop/Android retry would be; the
+ * first tap/scroll both nudges iOS to start loading (`video.load()`) and
+ * attempts playback. If `play()` is refused for another reason (Data Saver,
+ * battery saver, a low media engagement score), the same gesture path covers
+ * it too — until then the poster stays visible, so the worst case degrades
+ * to the static-image hero. Still never the LCP element: this mounts
+ * post-hydration via effect, so the poster `<Image>` in hero.tsx is what
+ * paints first (docs/05-TRD.md LCP budget).
  */
 export function HeroVideo({ src, poster }: HeroVideoProps) {
   const [enabled, setEnabled] = useState(false);
@@ -57,28 +63,43 @@ export function HeroVideo({ src, poster }: HeroVideoProps) {
     if (!enabled || !video) return;
 
     video.muted = true;
-    let cancelled = false;
+    let played = false;
 
     const attempt = () => {
-      if (cancelled) return;
-      video.play().catch(() => {
-        // Retry on the first user gesture, which always satisfies the
-        // autoplay policy.
-        window.addEventListener('pointerdown', attempt, { once: true });
-        window.addEventListener('touchstart', attempt, { once: true });
-        window.addEventListener('scroll', attempt, { once: true, passive: true });
-      });
+      if (played) return;
+      video.play().then(
+        () => {
+          played = true;
+        },
+        () => {},
+      );
     };
 
     if (video.readyState >= 3) attempt();
-    else video.addEventListener('canplay', attempt, { once: true });
+    video.addEventListener('canplay', attempt);
+
+    // Always on, not just wired in after a play() rejection: iOS Safari can
+    // leave the video at readyState 0 forever with canplay never firing at
+    // all, so there may be no rejection to react to in the first place.
+    // `load()` gives it an explicit nudge to start fetching before retrying.
+    const gestureAttempt = () => {
+      if (played) return;
+      // Only force a reload if it's truly stalled at square one — if
+      // readyState is already past 0 the browser has started fetching on
+      // its own (the normal Chrome/Android path), and reloading here would
+      // abort a `play()` that's already in flight rather than help anything.
+      if (video.readyState === 0) video.load();
+      attempt();
+    };
+    window.addEventListener('touchstart', gestureAttempt, { once: true, passive: true });
+    window.addEventListener('pointerdown', gestureAttempt, { once: true });
+    window.addEventListener('scroll', gestureAttempt, { once: true, passive: true });
 
     return () => {
-      cancelled = true;
       video.removeEventListener('canplay', attempt);
-      window.removeEventListener('pointerdown', attempt);
-      window.removeEventListener('touchstart', attempt);
-      window.removeEventListener('scroll', attempt);
+      window.removeEventListener('touchstart', gestureAttempt);
+      window.removeEventListener('pointerdown', gestureAttempt);
+      window.removeEventListener('scroll', gestureAttempt);
     };
   }, [enabled]);
 
