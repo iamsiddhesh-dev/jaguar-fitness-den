@@ -26,18 +26,22 @@ type HeroVideoProps = {
  * (and would abort a native autoplay attempt), leaving the video parked at
  * t=0 behind the poster.
  *
- * iOS Safari needs a second path on top of that: it can stall a video at
- * `readyState 0` indefinitely — never firing `canplay` at all — until a user
- * gesture happens, regardless of `preload`, muted, or playsInline. So the
- * gesture listeners below are always attached up front, not just wired in
- * after a `play()` rejection like a desktop/Android retry would be; the
- * first tap/scroll both nudges iOS to start loading (`video.load()`) and
- * attempts playback. If `play()` is refused for another reason (Data Saver,
- * battery saver, a low media engagement score), the same gesture path covers
- * it too — until then the poster stays visible, so the worst case degrades
- * to the static-image hero. Still never the LCP element: this mounts
- * post-hydration via effect, so the poster `<Image>` in hero.tsx is what
- * paints first (docs/05-TRD.md LCP budget).
+ * iOS Safari has a further quirk on top of that, specific to a genuinely
+ * cold page load (confirmed by testing: works fine once the video is already
+ * cached from a prior visit, or after a client-side route change — it's the
+ * very first fetch-from-network case that fails). It appears to require the
+ * intent to play be registered close to load time, not merely once enough
+ * data has arrived — waiting passively for `canplay` before ever calling
+ * `play()` is too late. So `attempt()` (and an explicit `load()`, since
+ * `preload="auto"` alone wasn't reliably kicking off the fetch) both fire
+ * unconditionally on mount, in addition to — not instead of — the
+ * `canplay` listener and the gesture listeners below. Gesture listeners stay
+ * as a further backup for autoplay being refused for another reason (Data
+ * Saver, battery saver, a low media engagement score) — until any of these
+ * succeed the poster stays visible, so the worst case degrades to the
+ * static-image hero. Still never the LCP element: this mounts post-hydration
+ * via effect, so the poster `<Image>` in hero.tsx is what paints first
+ * (docs/05-TRD.md LCP budget).
  */
 export function HeroVideo({ src, poster }: HeroVideoProps) {
   const [enabled, setEnabled] = useState(false);
@@ -75,7 +79,10 @@ export function HeroVideo({ src, poster }: HeroVideoProps) {
       );
     };
 
-    if (video.readyState >= 3) attempt();
+    // Fire immediately regardless of readyState — don't wait passively for
+    // canplay before registering play intent (see comment above).
+    video.load();
+    attempt();
     video.addEventListener('canplay', attempt);
 
     // Always on, not just wired in after a play() rejection: iOS Safari can
